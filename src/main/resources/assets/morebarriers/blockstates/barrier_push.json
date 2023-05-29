@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "morebarriers:block/barrier_push",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "morebarriers:block/barrier_push",
+      "x": 270
+    },
+    "facing=north": {
+      "model": "morebarriers:block/barrier_push"
+    },
+    "facing=south": {
+      "model": "morebarriers:block/barrier_push",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "morebarriers:block/barrier_push",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "morebarriers:block/barrier_push",
+      "y": 90
+    }
+  }
+}
