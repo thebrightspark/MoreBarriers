@@ -22,13 +22,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-/*
-・Water Barrier block, is not "Waterlogged" and should not contribute to flowing water
-・Lava Barrier block, same as water, but lava
-・Pain Barrier, similar to spending time in The Void, I would like a block that you can pass through (and any other entity, like the ineffable glass from Extra Utilities) that hurts like cactus. Death msg: "was killed by The Guardians."
-・Death Barrier, when walked into, you die. Death msg: "died trying to pierce the veil."
-・Push Barrier, a block that can be passed through but pushes entities in a single direction (preferably towards the player who places it; including up or down)
- */
 public class MBBlocks {
 	public static final DeferredRegister<Block> BLOCKS =
 		DeferredRegister.create(ForgeRegistries.BLOCKS, MoreBarriers.MOD_ID);
@@ -53,10 +46,12 @@ public class MBBlocks {
 	public static final RegistryObject<Block> DEATH_BARRIER =
 		regBlock("barrier_death", () -> new DeathBarrierBlock(blockProps()));
 	public static final RegistryObject<Block> PUSH_BARRIER =
-		regBlock("barrier_push", () -> new PushBarrierBlock(blockProps().noCollission()));
+		regBlock("barrier_push", () -> new PushBarrierBlock(0.12D, blockProps().noCollission()));
+	public static final RegistryObject<Block> LAUNCH_BARRIER =
+		regBlock("barrier_launch", () -> new PushBarrierBlock(1D, blockProps().noCollission()));
 
 	public static final RegistryObject<TileEntityType<BarrierTileEntity>> TILE_BARRIER =
-		regTE("barrier", BarrierTileEntity::new, WATER_BARRIER, LAVA_BARRIER, PUSH_BARRIER);
+		regTE("barrier", BarrierTileEntity::new, WATER_BARRIER, LAVA_BARRIER, PUSH_BARRIER, LAUNCH_BARRIER);
 	public static final RegistryObject<TileEntityType<NameableBarrierTileEntity>> TILE_NAMEABLE_BARRIER =
 		regTE("barrier_nameable", NameableBarrierTileEntity::new, DEATH_BARRIER, PAIN_BARRIER);
 
@@ -95,12 +90,10 @@ public class MBBlocks {
 	}
 
 	public static boolean isBarrier(Item item) {
-		return item == Items.BARRIER || isRegistryObject(item, WATER_BARRIER) ||
-			isRegistryObject(item, LAVA_BARRIER) || isRegistryObject(item, PAIN_BARRIER) ||
-			isRegistryObject(item, DEATH_BARRIER) || isRegistryObject(item, PUSH_BARRIER);
+		return item == Items.BARRIER || BLOCKS.getEntries().stream().anyMatch(block -> isMBBarrier(item, block));
 	}
 
-	private static boolean isRegistryObject(Item item, RegistryObject<Block> registryObject) {
+	private static boolean isMBBarrier(Item item, RegistryObject<Block> registryObject) {
 		return registryObject.map(block -> block.asItem() == item).orElse(false);
 	}
 }

@@ -26,6 +26,7 @@ public class MBItemModelProvider extends ItemModelProvider {
 		itemModel(MBBlocks.PAIN_BARRIER);
 		itemModel(MBBlocks.DEATH_BARRIER);
 		itemModel(MBBlocks.PUSH_BARRIER);
+		itemModel(MBBlocks.LAUNCH_BARRIER);
 	}
 
 	@SuppressWarnings("ConstantConditions")

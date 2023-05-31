@@ -18,9 +18,11 @@ import javax.annotation.Nullable;
 
 public class PushBarrierBlock extends MBBarrierBlock {
 	private static final DirectionProperty FACING = BlockStateProperties.FACING;
+	private final double force;
 
-	public PushBarrierBlock(Properties properties) {
+	public PushBarrierBlock(double force, Properties properties) {
 		super(properties);
+		this.force = force;
 		registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.UP));
 	}
 
@@ -28,7 +30,7 @@ public class PushBarrierBlock extends MBBarrierBlock {
 	public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
 		if (canAffectEntity(entity)) {
 			Direction direction = state.getValue(FACING);
-			entity.push(direction.getStepX(), direction.getStepY(), direction.getStepZ());
+			entity.push(direction.getStepX() * force, direction.getStepY() * force, direction.getStepZ() * force);
 		}
 	}
 

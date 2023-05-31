@@ -21,6 +21,7 @@ public class MBBlockModelProvider extends BlockModelProvider {
 		cubeAll(MBBlocks.PAIN_BARRIER);
 		cubeAll(MBBlocks.DEATH_BARRIER);
 		cubeFront(MBBlocks.PUSH_BARRIER);
+		cubeFront(MBBlocks.LAUNCH_BARRIER);
 
 		ResourceLocation textureRL = mcLoc(ITEM_FOLDER + "/" + Items.BARRIER.getRegistryName().getPath());
 		cubeAll(MBBlocks.WATER_BARRIER, textureRL);

@@ -23,6 +23,7 @@ public class MBLangProvider extends LanguageProvider {
 		addBlock(MBBlocks.PAIN_BARRIER, "Pain Barrier");
 		addBlock(MBBlocks.DEATH_BARRIER, "Death Barrier");
 		addBlock(MBBlocks.PUSH_BARRIER, "Push Barrier");
+		addBlock(MBBlocks.LAUNCH_BARRIER, "Launch Barrier");
 	}
 
 	private void addDamageSource(String key, String name) {

@@ -51,6 +51,6 @@ public abstract class MBBarrierBlock extends Block {
 	}
 
 	protected boolean canAffectEntity(Entity entity) {
-		return entity instanceof PlayerEntity && !((PlayerEntity) entity).isCreative();
+		return !(entity instanceof PlayerEntity) || !((PlayerEntity) entity).isCreative();
 	}
 }

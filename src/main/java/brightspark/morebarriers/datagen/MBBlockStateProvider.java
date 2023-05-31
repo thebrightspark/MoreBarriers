@@ -19,7 +19,7 @@ public class MBBlockStateProvider extends BlockStateProvider {
 		simpleBlock(MBBlocks.DEATH_BARRIER);
 		simpleBlock(MBBlocks.WATER_BARRIER);
 		simpleBlock(MBBlocks.LAVA_BARRIER);
-		// Don't generate the Push Barrier blockstate, as have created it manually
+		// Don't generate the Push or Launch barrier blockstates, as have created them manually
 	}
 
 	private void simpleBlock(RegistryObject<Block> block) {
